@@ -40,6 +40,8 @@ micro_wake_word:
       id: hey_jarvis
     - model: https://github.com/kahrendt/microWakeWord/releases/download/okay_nabu_20241226.3/okay_nabu.json
       id: okay_nabu
+    - model: https://github.com/virgahyatt/custom-mww/releases/download/v.4/cklepio.json
+      id: cklepio
     - model: https://github.com/kahrendt/microWakeWord/releases/download/stop/stop.json
       id: stop
       internal: true
