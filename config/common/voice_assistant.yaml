@@ -43,7 +43,6 @@ micro_wake_word:
     - model: https://github.com/kahrendt/microWakeWord/releases/download/stop/stop.json
       id: stop
       internal: true
-  vad:
   microphone:
     microphone: sat1_mics
     channels: 1
