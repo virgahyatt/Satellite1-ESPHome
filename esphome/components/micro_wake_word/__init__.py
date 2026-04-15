@@ -486,13 +486,17 @@ async def to_code(config):
             manifest[KEY_MICRO][CONF_SLIDING_WINDOW_SIZE],
         )
 
+        # Apply a safety multiplier to tensor arena sizes to account for
+        # varying esp-nn kernel workspace requirements across versions
+        tensor_arena_size = int(manifest[KEY_MICRO][CONF_TENSOR_ARENA_SIZE] * 1.5)
+
         if manifest[KEY_WAKE_WORD] == "vad":
             cg.add(
                 var.add_vad_model(
                     prog_arr,
                     quantized_probability_cutoff,
                     sliding_window_size,
-                    manifest[KEY_MICRO][CONF_TENSOR_ARENA_SIZE],
+                    tensor_arena_size,
                 )
             )
         else:
@@ -505,7 +509,7 @@ async def to_code(config):
                 quantized_probability_cutoff,
                 sliding_window_size,
                 manifest[KEY_WAKE_WORD],
-                manifest[KEY_MICRO][CONF_TENSOR_ARENA_SIZE],
+                tensor_arena_size,
                 default_enabled,
                 model_parameters[CONF_INTERNAL],
             )
